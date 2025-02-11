@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+@import "tailwindcss";
+
+body, html {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin: 6rem auto;
+  background-image: url("assets/image.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: black;
+  width: 1366px;
+  height: 810px;
+}
