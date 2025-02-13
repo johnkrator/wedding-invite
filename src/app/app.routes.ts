@@ -17,6 +17,10 @@ export const routes: Routes = [
         loadChildren: () => import('../app/pages/note-from-us/note-from-us.module').then(m => m.NoteFromUsModule),
       },
       {
+        path: 'email',
+        loadChildren: () => import('../app/pages/email-template/email-template.module').then(m => m.EmailTemplateModule),
+      },
+      {
         path: '**', redirectTo: 'home',
       }
     ],
