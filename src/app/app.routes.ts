@@ -13,6 +13,10 @@ export const routes: Routes = [
         loadChildren: () => import('../app/pages/home/home.module').then(m => m.HomeModule),
       },
       {
+        path: 'note',
+        loadChildren: () => import('../app/pages/note-from-us/note-from-us.module').then(m => m.NoteFromUsModule),
+      },
+      {
         path: '**', redirectTo: 'home',
       }
     ],
