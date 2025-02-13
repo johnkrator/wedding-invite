@@ -33,11 +33,30 @@ h4 {
   font-family: 'PinyonScript-Regular', sans-serif;
 }
 
+h5 {
+  font-family: 'PlayfairDisplay-VariableFont_wght', sans-serif;
+}
+
 body, html {
   background-image: url("assets/Frame 1686561926.svg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 100vh;
+  height: auto;
   font-family: 'InstrumentSans-VariableFont_wdth,wght', sans-serif;
 }
+
+/* Tablet (max-width: 1024px) */
+@media screen and (max-width: 1024px) {
+  body, html {
+    background-image: url("assets/Mobile.svg");
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media screen and (max-width: 767px) {
+  body, html {
+    background-image: url("assets/Mobile.svg");
+  }
+}
+
