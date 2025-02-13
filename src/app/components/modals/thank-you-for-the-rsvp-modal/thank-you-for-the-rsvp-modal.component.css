@@ -1,0 +1,35 @@
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.gap-32 {
+  gap: 8rem;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.custom-radio {
+  width: 1rem;
+  height: 1rem;
+  appearance: none;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+}
+
+.custom-radio:checked {
+  border-color: #594B00;
+  background-color: #594B00;
+  box-shadow: inset 0 0 0 3px white;
+}
+
+label {
+  cursor: pointer;
+}

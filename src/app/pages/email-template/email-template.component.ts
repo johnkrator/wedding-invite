@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {
   HotelReservationModalComponent
-} from '../../components/hotel-reservation-modal/hotel-reservation-modal.component';
+} from '../../components/modals/hotel-reservation-modal/hotel-reservation-modal.component';
 import {RouterLink} from '@angular/router';
 
 @Component({
