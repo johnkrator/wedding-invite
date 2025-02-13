@@ -20,7 +20,7 @@
   </h5>
 
   <!--  form section-->
-  <div class="flex flex-col gap-5 shadow bg-white rounded-2xl p-10 lg:w-[769px] w-[327px] mb-10">
+  <div class="flex flex-col gap-5 shadow bg-white rounded-2xl lg:p-10 p-5 lg:w-[769px] w-[327px] mb-10">
     <h5 class="text-[20px] font-bold">Kindly RSVP your invite</h5>
     <form class="flex flex-col gap-4">
       <div class="flex flex-col gap-2">
@@ -51,12 +51,26 @@
         <h5 class="flex font-bold text-[14px]">Will you be attending the event?</h5>
         <div class="flex items-center gap-32">
           <div class="flex items-center gap-2">
-            <input type="radio">
-            <label class="">Yes</label>
+            <input
+              type="radio"
+              id="attending-yes"
+              name="attending"
+              value="yes"
+              [(ngModel)]="attending"
+              class="custom-radio"
+            >
+            <label for="attending-yes">Yes</label>
           </div>
           <div class="flex items-center gap-2">
-            <input type="radio">
-            <label class="">No</label>
+            <input
+              type="radio"
+              id="attending-no"
+              name="attending"
+              value="no"
+              [(ngModel)]="attending"
+              class="custom-radio"
+            >
+            <label for="attending-no">No</label>
           </div>
         </div>
       </div>
@@ -65,12 +79,26 @@
         <h5 class="flex font-bold text-[14px]">Will you be coming with a guest?</h5>
         <div class="flex items-center gap-32">
           <div class="flex items-center gap-2">
-            <input type="radio">
-            <label class="">Yes</label>
+            <input
+              type="radio"
+              id="guest-yes"
+              name="bringingGuest"
+              value="yes"
+              [(ngModel)]="bringingGuest"
+              class="custom-radio"
+            >
+            <label for="guest-yes">Yes</label>
           </div>
           <div class="flex items-center gap-2">
-            <input type="radio">
-            <label class="">No</label>
+            <input
+              type="radio"
+              id="guest-no"
+              name="bringingGuest"
+              value="no"
+              [(ngModel)]="bringingGuest"
+              class="custom-radio"
+            >
+            <label for="guest-no">No</label>
           </div>
         </div>
       </div>
