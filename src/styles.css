@@ -1,14 +1,43 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'InstrumentSans-Italic-VariableFont_wdth,wght';
+  src: url("assets/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf");
+}
+
+@font-face {
+  font-family: 'InstrumentSans-VariableFont_wdth,wght';
+  src: url("assets/fonts/InstrumentSans-VariableFont_wdth,wght.ttf");
+}
+
+@font-face {
+  font-family: 'PinyonScript-Regular';
+  src: url("assets/fonts/PinyonScript-Regular.ttf");
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay-Italic-VariableFont_wght';
+  src: url("assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay-VariableFont_wght';
+  src: url("assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
+}
+
+p {
+  font-family: 'PlayfairDisplay-Italic-VariableFont_wght', sans-serif;
+}
+
+h4 {
+  font-family: 'PinyonScript-Regular', sans-serif;
+}
+
 body, html {
-  display: flex;
-  align-items: center;
-  justify-content: start;
-  margin: 6rem auto;
-  background-image: url("assets/image.svg");
+  background-image: url("assets/Frame 1686561926.svg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: black;
-  width: 1366px;
-  height: 810px;
+  width: 100%;
+  height: 100vh;
+  font-family: 'InstrumentSans-VariableFont_wdth,wght', sans-serif;
 }
