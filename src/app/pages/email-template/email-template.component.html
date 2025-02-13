@@ -57,4 +57,12 @@
       </div>
     </div>
   </div>
+
+  <button (click)="openModal()" class="flex items-center justify-center mx-auto">
+    Open modal
+  </button>
+
+  <app-hotel-reservation-modal [isOpen]="isModalOpen" (closeModal)="closeModal()"/>
 </div>
+
+
