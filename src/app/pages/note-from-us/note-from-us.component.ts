@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
 import { ThankYouForTheRsvpModalComponent } from '../../components/modals/thank-you-for-the-rsvp-modal/thank-you-for-the-rsvp-modal.component';
 import { NgIf } from '@angular/common';
 import { RsvpService } from '../../services/rsvp.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { HttpStatusCode } from '@angular/common/http';
 
 @Component({
   selector: 'app-note-from-us',
@@ -28,6 +30,7 @@ export class NoteFromUsComponent {
   isSubmitting = signal<boolean>(false);
 
   rsvpService = inject(RsvpService);
+  destroyRef = inject(DestroyRef);
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', [
@@ -55,12 +58,24 @@ export class NoteFromUsComponent {
   }
 
   submit(): void {
+    if (!this.form.valid) return;
     this.isSubmitting.set(true);
-    console.log(this.form.value);
-    if (this.form.valid) {
-      console.log(this.form.value);
-      this.openOrCloseModal();
-    }
+
+    this.rsvpService
+      .submitPersonalInformation(this.form.value)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: (response) => {
+          this.isSubmitting.set(false);
+          if (response.success && response.statusCode == HttpStatusCode.Ok) {
+            this.openOrCloseModal();
+          }
+        },
+        error: (error) => {
+          this.isSubmitting.set(false);
+          console.error(error);
+        },
+      });
   }
 
   openOrCloseModal(): void {

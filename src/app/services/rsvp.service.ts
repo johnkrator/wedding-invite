@@ -12,6 +12,6 @@ export class RsvpService {
   submitPersonalInformation(
     data: PersonalInformationRequest
   ): Observable<UserResponse> {
-    return this.http.post<any>('RSVP/Personal_Information', data);
+    return this.http.post<UserResponse>('RSVP/Personal_Information', data);
   }
 }

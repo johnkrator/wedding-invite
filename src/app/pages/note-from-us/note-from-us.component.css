@@ -33,7 +33,9 @@
 label {
   cursor: pointer;
 }
-
 .text-error {
-  /* @apply text-xs font-bold text-start; */
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: start;
+  color: #ff0000;
 }
