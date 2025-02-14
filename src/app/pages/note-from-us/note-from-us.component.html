@@ -80,6 +80,21 @@
       </div>
 
       <div class="flex flex-col gap-2">
+        <label class="text-[14px] font-bold">Phone number</label>
+        <input
+          type="text"
+          placeholder="Input your email address"
+          formControlName="phone"
+          class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+        />
+        <p
+          *ngIf="ctrls['phone'].errors && ctrls['phone'].touched"
+          class="text-error"
+        >
+          @if(ctrls['phone'].errors['pattern']){ Invalid phone number. }
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
         <label class="text-[14px] font-bold">Email address</label>
         <input
           autocomplete="username"
@@ -176,6 +191,7 @@
         <input
           type="text"
           placeholder="Your guest name"
+          formControlName="guestNames"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />
       </div>

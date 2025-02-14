@@ -12,6 +12,7 @@ import { NgIf } from '@angular/common';
 import { RsvpService } from '../../services/rsvp.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpStatusCode } from '@angular/common/http';
+import { PersonalInformationRequest } from '../../models/rvsp.model';
 
 @Component({
   selector: 'app-note-from-us',
@@ -44,11 +45,12 @@ export class NoteFromUsComponent {
       Validators.maxLength(50),
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
+    phone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
     password: new FormControl('', Validators.required),
     willAttend: new FormControl(true, Validators.required),
     comingWithAGuest: new FormControl(false, Validators.required),
     numberOfGuests: new FormControl(1, Validators.required),
-    guestName: new FormControl(''),
+    guestNames: new FormControl(''),
   });
 
   ngOnInit(): void {}
@@ -60,9 +62,15 @@ export class NoteFromUsComponent {
   submit(): void {
     if (!this.form.valid) return;
     this.isSubmitting.set(true);
-
+    const model: PersonalInformationRequest = {
+      ...this.form.value,
+      guestNames: [
+        this.form.value.guestNames ? this.form.value.guestNames.split(',') : '',
+      ],
+    };
+    console.log(model);
     this.rsvpService
-      .submitPersonalInformation(this.form.value)
+      .submitPersonalInformation(model)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
