@@ -1,31 +1,63 @@
-import {Component} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {RouterLink} from '@angular/router';
+import { Component, signal } from '@angular/core';
 import {
-  ThankYouForTheRsvpModalComponent
-} from '../../components/modals/thank-you-for-the-rsvp-modal/thank-you-for-the-rsvp-modal.component';
+  FormControl,
+  FormGroup,
+  FormsModule,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
+import { RouterLink } from '@angular/router';
+import { ThankYouForTheRsvpModalComponent } from '../../components/modals/thank-you-for-the-rsvp-modal/thank-you-for-the-rsvp-modal.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-note-from-us',
   imports: [
     FormsModule,
+    ReactiveFormsModule,
     RouterLink,
-    ThankYouForTheRsvpModalComponent
+    ThankYouForTheRsvpModalComponent,
+    NgIf,
   ],
   templateUrl: './note-from-us.component.html',
-  styleUrl: './note-from-us.component.css'
+  styleUrl: './note-from-us.component.css',
 })
 export class NoteFromUsComponent {
-  attending: string = '';
-  bringingGuest: string = '';
+  isModalOpen = signal<boolean>(false);
 
-  isModalOpen: boolean = false;
+  form: FormGroup = new FormGroup({
+    firstName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    lastName: new FormControl('', [
+      Validators.required,
+      Validators.minLength(2),
+      Validators.maxLength(50),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', Validators.required),
+    willAttend: new FormControl(true, Validators.required),
+    comingWithAGuest: new FormControl(false, Validators.required),
+    numberOfGuests: new FormControl(1, Validators.required),
+    guestName: new FormControl(''),
+  });
 
-  openModal(): void {
-    this.isModalOpen = true;
+  ngOnInit(): void {}
+
+  get ctrls() {
+    return this.form.controls;
   }
 
-  closeModal(): void {
-    this.isModalOpen = false;
+  submit(): void {
+    if (this.form.valid) {
+      console.log(this.form.value);
+      this.openOrCloseModal();
+    }
+  }
+
+  openOrCloseModal(): void {
+    this.isModalOpen.set(!this.isModalOpen());
   }
 }
