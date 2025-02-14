@@ -25,11 +25,17 @@
 }
 
 .custom-radio:checked {
-  border-color: #594B00;
-  background-color: #594B00;
+  border-color: #594b00;
+  background-color: #594b00;
   box-shadow: inset 0 0 0 3px white;
 }
 
 label {
   cursor: pointer;
+}
+.text-error {
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-align: start;
+  color: #ff0000;
 }
