@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -9,6 +9,7 @@ import {
 import { RouterLink } from '@angular/router';
 import { ThankYouForTheRsvpModalComponent } from '../../components/modals/thank-you-for-the-rsvp-modal/thank-you-for-the-rsvp-modal.component';
 import { NgIf } from '@angular/common';
+import { RsvpService } from '../../services/rsvp.service';
 
 @Component({
   selector: 'app-note-from-us',
@@ -24,6 +25,9 @@ import { NgIf } from '@angular/common';
 })
 export class NoteFromUsComponent {
   isModalOpen = signal<boolean>(false);
+  isSubmitting = signal<boolean>(false);
+
+  rsvpService = inject(RsvpService);
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', [
@@ -51,6 +55,8 @@ export class NoteFromUsComponent {
   }
 
   submit(): void {
+    this.isSubmitting.set(true);
+    console.log(this.form.value);
     if (this.form.valid) {
       console.log(this.form.value);
       this.openOrCloseModal();
