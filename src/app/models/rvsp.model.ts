@@ -1,4 +1,4 @@
-export interface UserResponse {
+export interface ApiResponse {
   statusCode: number;
   message: string;
   userId: string;
@@ -14,4 +14,18 @@ export interface PersonalInformationRequest {
   comingWithAGuest: boolean;
   numberOfGuests: number;
   guestNames: string[];
+}
+
+export interface HotelReservationRequest {
+  userId: string;
+  reserveAHotel: boolean;
+  hotelName: string;
+  numberOfDays: number;
+  amount: number;
+}
+
+export interface HotelDetail {
+  name: string;
+  amount: number;
+  key: number;
 }

@@ -24,13 +24,18 @@ export class ConfirmYourReservationModalComponent {
 
   onPaymentConfirm() {
     this.dialogConfirmRef.close();
-    this.dialog.open(YouHaveAReservationModalComponent, {
-      width: '700px',
-      maxWidth: '90vw',
-      maxHeight: '98vh',
-      closeOnNavigation: true,
-      disableClose: false,
-    });
+    this.dialog
+      .open(YouHaveAReservationModalComponent, {
+        width: '700px',
+        maxWidth: '90vw',
+        maxHeight: '98vh',
+        closeOnNavigation: true,
+        disableClose: false,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        this.dialog.closeAll();
+      });
   }
 
   onReservationSuccessClose() {

@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PersonalInformationRequest, UserResponse } from '../models/rvsp.model';
+import {
+  HotelReservationRequest,
+  PersonalInformationRequest,
+  ApiResponse,
+} from '../models/rvsp.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +15,11 @@ export class RsvpService {
 
   submitPersonalInformation(
     data: PersonalInformationRequest
-  ): Observable<UserResponse> {
-    return this.http.post<UserResponse>('RSVP/Personal_Information', data);
+  ): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>('RSVP/Personal_Information', data);
+  }
+
+  hotelReservation(data: HotelReservationRequest): Observable<ApiResponse> {
+    return this.http.post<ApiResponse>('RSVP/Hotel_Reservation', data);
   }
 }
