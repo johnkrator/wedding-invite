@@ -64,7 +64,12 @@ export class HotelReservationModalComponent {
     );
     if (hotel) {
       let calculatedAmount: number = hotel.amount * numberOfDays;
-      this.selectedHotel.set({ ...hotel, amount: calculatedAmount });
+      this.selectedHotel.set({
+        ...hotel,
+        numberOfDays: numberOfDays,
+        amount: hotel.amount,
+        totalAmount: calculatedAmount,
+      });
       return calculatedAmount;
     }
     return 0;
@@ -92,8 +97,8 @@ export class HotelReservationModalComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
+          this.isSubmitting.set(false);
           if (response.success && response.statusCode == HttpStatusCode.Ok) {
-            this.storage.setItem('userId', response.userId);
             this.toast.success(
               response.message ?? 'We have received your details.'
             );
@@ -101,6 +106,7 @@ export class HotelReservationModalComponent {
               width: '700px',
               maxWidth: '90vw',
               maxHeight: '98vh',
+              data: this.selectedHotel(),
             });
           } else {
             this.isSubmitting.set(false);

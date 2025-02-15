@@ -42,7 +42,7 @@
         <label class="text-[14px] font-bold">First name</label>
         <input
           type="text"
-          placeholder="Input your first name"
+          placeholder="Nnaemeka"
           formControlName="firstName"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />
@@ -62,7 +62,7 @@
         <label class="text-[14px] font-bold">Last name</label>
         <input
           type="text"
-          placeholder="input your last name"
+          placeholder="Igwe-Omoke"
           formControlName="lastName"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />
@@ -82,7 +82,7 @@
         <label class="text-[14px] font-bold">Phone number</label>
         <input
           type="text"
-          placeholder="Input your email address"
+          placeholder="eg. +2349138934898"
           formControlName="phone"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />
@@ -98,7 +98,7 @@
         <input
           autocomplete="username"
           type="email"
-          placeholder="Input your email address"
+          placeholder="example@domain.com"
           formControlName="email"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />
@@ -108,23 +108,6 @@
         >
           @if(ctrls['email'].errors['required']){ Email is required. }
           @if(ctrls['email'].errors['email']){ Invalid email address. }
-        </p>
-      </div>
-
-      <div class="flex flex-col gap-2">
-        <label class="text-[14px] font-bold">Password</label>
-        <input
-          autocomplete="new-password"
-          type="password"
-          placeholder="Input your password"
-          formControlName="password"
-          class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
-        />
-        <p
-          *ngIf="ctrls['password'].errors && ctrls['password'].touched"
-          class="text-error"
-        >
-          @if(ctrls['password'].errors['required']){ Password is required }
         </p>
       </div>
 
@@ -189,7 +172,7 @@
         <label class="text-[14px] font-bold">Guest’s full name</label>
         <input
           type="text"
-          placeholder="Your guest names separated by commas e.g. John Doe, Jane Doe"
+          placeholder="e.g. John Doe, Jane Doe - Comma separated."
           formControlName="guestNames"
           class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
         />

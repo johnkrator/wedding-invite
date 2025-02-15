@@ -48,7 +48,6 @@ export class NoteFromUsComponent {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
-    password: new FormControl('', Validators.required),
     willAttend: new FormControl(true, Validators.required),
     comingWithAGuest: new FormControl(false, Validators.required),
     numberOfGuests: new FormControl(0, Validators.required),

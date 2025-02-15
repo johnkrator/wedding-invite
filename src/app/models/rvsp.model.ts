@@ -27,5 +27,7 @@ export interface HotelReservationRequest {
 export interface HotelDetail {
   name: string;
   amount: number;
+  totalAmount?: number;
+  numberOfDays?: number;
   key: number;
 }
