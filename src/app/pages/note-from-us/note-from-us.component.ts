@@ -6,32 +6,32 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ThankYouForTheRsvpModalComponent } from '../../components/modals/thank-you-for-the-rsvp-modal/thank-you-for-the-rsvp-modal.component';
 import { NgIf } from '@angular/common';
 import { RsvpService } from '../../services/rsvp.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { HttpStatusCode } from '@angular/common/http';
 import { PersonalInformationRequest } from '../../models/rvsp.model';
+import { ToastrService } from 'ngx-toastr';
+import { ConfirmYourReservationModalComponent } from '../../components/modals/confirm-your-reservation-modal/confirm-your-reservation-modal.component';
+import { MatDialog } from '@angular/material/dialog';
+import { HotelReservationModalComponent } from '../../components/modals/hotel-reservation-modal/hotel-reservation-modal.component';
 
 @Component({
   selector: 'app-note-from-us',
-  imports: [
-    FormsModule,
-    ReactiveFormsModule,
-    RouterLink,
-    ThankYouForTheRsvpModalComponent,
-    NgIf,
-  ],
+  imports: [FormsModule, ReactiveFormsModule, RouterLink, NgIf],
   templateUrl: './note-from-us.component.html',
   styleUrl: './note-from-us.component.css',
 })
 export class NoteFromUsComponent {
-  isModalOpen = signal<boolean>(false);
   isSubmitting = signal<boolean>(false);
 
   rsvpService = inject(RsvpService);
   destroyRef = inject(DestroyRef);
+  toast = inject(ToastrService);
+  router = inject(Router);
+  dialog = inject(MatDialog);
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', [
@@ -49,7 +49,7 @@ export class NoteFromUsComponent {
     password: new FormControl('', Validators.required),
     willAttend: new FormControl(true, Validators.required),
     comingWithAGuest: new FormControl(false, Validators.required),
-    numberOfGuests: new FormControl(1, Validators.required),
+    numberOfGuests: new FormControl(0, Validators.required),
     guestNames: new FormControl(''),
   });
 
@@ -62,11 +62,13 @@ export class NoteFromUsComponent {
   submit(): void {
     if (!this.form.valid) return;
     this.isSubmitting.set(true);
+    let guestNames = this.form.value.guestNames
+      ? this.form.value.guestNames.split(',')
+      : [''];
     const model: PersonalInformationRequest = {
       ...this.form.value,
-      guestNames: [
-        this.form.value.guestNames ? this.form.value.guestNames.split(',') : '',
-      ],
+      numberOfGuests: guestNames.length,
+      guestNames,
     };
     console.log(model);
     this.rsvpService
@@ -74,19 +76,53 @@ export class NoteFromUsComponent {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          this.isSubmitting.set(false);
+          console.log(response);
           if (response.success && response.statusCode == HttpStatusCode.Ok) {
+            this.toast.success(
+              response.message ?? 'We have received your details.'
+            );
             this.openOrCloseModal();
+          } else {
+            this.isSubmitting.set(false);
+            this.toast.error(
+              response.message ??
+                'We could not record your details, Please try again.'
+            );
           }
         },
         error: (error) => {
           this.isSubmitting.set(false);
+          this.toast.error(
+            'An error occurred while submitting your RSVP, please make sure you filled all the field correctly and try again.'
+          );
           console.error(error);
         },
       });
   }
 
   openOrCloseModal(): void {
-    this.isModalOpen.set(!this.isModalOpen());
+    this.dialog
+      .open(ThankYouForTheRsvpModalComponent, {
+        width: '600px',
+        maxWidth: '90vw',
+        maxHeight: '98vh',
+      })
+      .afterClosed()
+      .subscribe((action) => {
+        if (action == true) {
+          this.dialog
+            .open(HotelReservationModalComponent, {
+              width: '700px',
+              maxWidth: '90vw',
+              maxHeight: '98vh',
+            })
+            .afterClosed()
+            .subscribe(() => {
+              this.router.navigateByUrl('home');
+            });
+        } else {
+          this.router.navigateByUrl('home');
+        }
+      });
   }
 }

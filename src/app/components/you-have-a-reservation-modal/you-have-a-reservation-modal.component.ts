@@ -1,18 +1,15 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgIf} from '@angular/common';
+import { Component, inject } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-you-have-a-reservation-modal',
-  imports: [NgIf],
   templateUrl: './you-have-a-reservation-modal.component.html',
-  styleUrl: './you-have-a-reservation-modal.component.css'
+  styleUrl: './you-have-a-reservation-modal.component.css',
 })
 export class YouHaveAReservationModalComponent {
-  @Input() isOpen = false;
-  @Output() closeModal = new EventEmitter<void>();
-
+  dialog = inject(MatDialog);
   onClose() {
-    this.closeModal.emit();
+    this.dialog.closeAll();
   }
 
   onModalClick(event: Event) {

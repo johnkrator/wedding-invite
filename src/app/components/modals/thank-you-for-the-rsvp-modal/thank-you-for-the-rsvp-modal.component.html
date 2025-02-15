@@ -1,60 +1,41 @@
-<div
-  *ngIf="isOpen"
-  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex justify-center items-center z-50"
-  (click)="onClose()"
->
-  <div
-    class="bg-white rounded-3xl shadow-2xl w-full max-w-[680px] mx-4 max-h-[90vh] overflow-y-auto"
-    (click)="onModalClick($event)"
-  >
-    <div class="flex flex-col gap-5 justify-between items-center p-4">
-      <div class="flex items-center justify-center lg:gap-0 gap-16">
-        <h5 class="lg:text-[24px] text-center font-bold lg:w-[568px]">Thank you for the RSVP</h5>
-        <button
-          class="text-gray-500 hover:text-gray-700 text-2xl leading-none px-2"
-          (click)="onClose()"
-        >
-          ×
-        </button>
-      </div>
+<div class="flex flex-col gap-5 justify-between items-center p-4">
+  <div class="flex items-center justify-center lg:gap-0 gap-16">
+    <h5 class="text-center font-bold">Thank you for the RSVP</h5>
+  </div>
 
-      <div class="flex flex-col gap-5">
-        <h5 class="text-center text-[14px]">
-          ❤️
-          Thank you for responding to our invite, we have sent you a confirmation mail with all the necessary
-          information
-          you need to know
-        </h5>
+  <div class="flex flex-col gap-5">
+    <h5 class="text-center text-[14px]">
+      ❤️ Thank you for responding to our invite, we have sent you a confirmation
+      mail with all the necessary information you need to know
+    </h5>
 
-        <div class="flex flex-col items-center justify-center gap-5">
-          <h5 class="flex font-bold text-[14px]">Would you like to make a hotel reservation?</h5>
-          <div class="flex items-center gap-10">
-            <div class="flex items-center gap-2">
-              <input
-                type="radio"
-                id="hotel-yes"
-                name="hotelReservation"
-                value="yes"
-                [(ngModel)]="hotelReservation"
-                class="custom-radio"
-                (change)="onHotelReservationChange('yes')"
-              >
-              <label for="hotel-yes">Yes</label>
-            </div>
+    <div class="flex flex-col items-center justify-center gap-5">
+      <h5 class="flex font-bold text-[14px]">
+        Would you like to make a hotel reservation?
+      </h5>
+      <div class="flex items-center gap-10">
+        <div class="flex items-center gap-2">
+          <input
+            type="radio"
+            id="hotel-yes"
+            name="hotelReservation"
+            value="yes"
+            class="custom-radio"
+            (change)="onHotelReservationChange('yes')"
+          />
+          <label for="hotel-yes">Yes</label>
+        </div>
 
-            <div class="flex items-center gap-2">
-              <input
-                type="radio"
-                id="hotel-no"
-                name="hotelReservation"
-                value="no"
-                [(ngModel)]="hotelReservation"
-                class="custom-radio"
-                (change)="onHotelReservationChange('no')"
-              >
-              <label for="hotel-no">No</label>
-            </div>
-          </div>
+        <div class="flex items-center gap-2">
+          <input
+            type="radio"
+            id="hotel-no"
+            name="hotelReservation"
+            value="no"
+            class="custom-radio"
+            (change)="onHotelReservationChange('no')"
+          />
+          <label for="hotel-no">No</label>
         </div>
       </div>
     </div>
@@ -63,9 +44,3 @@
     </div>
   </div>
 </div>
-
-<!-- Move the hotel reservation modal outside the main modal content -->
-<app-hotel-reservation-modal
-  [isOpen]="isHotelModalOpen"
-  (closeModal)="onCloseHotelModal()"
-/>

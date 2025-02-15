@@ -1,72 +1,80 @@
-<div
-  *ngIf="isOpen"
-  class="fixed inset-0 backdrop-blur-sm bg-white/30 flex justify-center items-center z-50"
-  (click)="onClose()"
->
-  <div
-    class="bg-white rounded-3xl shadow-2xl w-full max-w-[680px] mx-4 max-h-[90vh] overflow-y-auto"
-    (click)="onModalClick($event)"
-  >
-    <div class="flex flex-col gap-5 justify-between items-center p-4">
-      <div class="flex items-center justify-center lg:gap-0 gap-16">
-        <h5 class="lg:text-[24px] font-bold lg:w-[568px]">We have these hotels available</h5>
-        <button
-          class="text-gray-500 hover:text-gray-700 text-2xl leading-none px-2"
-          (click)="onClose()"
-        >
-          ×
-        </button>
-      </div>
-
-      <form class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
-        <div class="flex flex-col gap-2">
-          <label class="text-[14px] font-bold">Osborne La Palm</label>
-          <input type="text" placeholder="25,000 NGN per night"
-                 class="border border-[#F0EEEC] focus:border-[#594B00] lg:w-[568px] outline-none px-5 py-3 rounded-2xl">
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-[14px] font-bold">Osborne La Palm, Uburu (Old site)</label>
-          <input type="text" placeholder="25,000 NGN per night"
-                 class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl">
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-[14px] font-bold">Osborne La Palm, Uburu (New site)</label>
-          <input type="text" placeholder="25,000 NGN per night"
-                 class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl">
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-[14px] font-bold">AZ hotel, Okpsi</label>
-          <input type="password" placeholder="25,000 NGN per night"
-                 class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl">
-        </div>
-
-        <div class="flex flex-col gap-2">
-          <label class="text-[14px] font-bold">Select the number of days you wish to stay</label>
-          <select name="" id=""
-                  class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl">
-            <option value="">Select below</option>
-            <option value="">1</option>
-          </select>
-        </div>
-
-        <div class="flex lg:justify-end">
-          <button type="submit"
-                  class="px-5 py-3 bg-[#594B00] cursor-pointer lg:w-[224px] w-full rounded-2xl text-white shadow font-bold">
-            Continue
-          </button>
-        </div>
-      </form>
-    </div>
-    <div class="p-4">
-      <ng-content></ng-content>
-    </div>
+<div class="flex flex-col gap-5 justify-between items-center p-4">
+  <div class="flex items-center justify-center lg:gap-0 gap-16">
+    <h5 class="lg:text-[24px] font-bold lg:w-[568px]">
+      We have these hotels available
+    </h5>
   </div>
-</div>
 
+  <form class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold">Osborne La Palm</label>
+      <input
+        type="text"
+        placeholder="25,000 NGN per night"
+        class="border border-[#F0EEEC] focus:border-[#594B00] lg:w-[568px] outline-none px-5 py-3 rounded-2xl"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold"
+        >Osborne La Palm, Uburu (Old site)</label
+      >
+      <input
+        type="text"
+        placeholder="25,000 NGN per night"
+        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold"
+        >Osborne La Palm, Uburu (New site)</label
+      >
+      <input
+        type="text"
+        placeholder="25,000 NGN per night"
+        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold">AZ hotel, Okpsi</label>
+      <input
+        type="password"
+        placeholder="25,000 NGN per night"
+        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+      />
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold"
+        >Select the number of days you wish to stay</label
+      >
+      <select
+        name=""
+        id=""
+        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+      >
+        <option value="">Select below</option>
+        <option value="">1</option>
+      </select>
+    </div>
+
+    <div class="flex lg:justify-end">
+      <button
+        type="submit"
+        class="px-5 py-3 bg-[#594B00] cursor-pointer lg:w-[224px] w-full rounded-2xl text-white shadow font-bold"
+      >
+        Continue
+      </button>
+    </div>
+  </form>
+</div>
+<div class="p-4">
+  <ng-content></ng-content>
+</div>
+<!-- 
 <app-confirm-your-reservation-modal
   [isOpen]="showConfirmationModal"
   (closeModal)="onConfirmationClose()"
-></app-confirm-your-reservation-modal>
+></app-confirm-your-reservation-modal> -->

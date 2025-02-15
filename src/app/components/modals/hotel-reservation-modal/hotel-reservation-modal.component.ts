@@ -1,29 +1,21 @@
-import {Component, Input, Output, EventEmitter} from '@angular/core';
-import {NgIf} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {
-  ConfirmYourReservationModalComponent
-} from '../confirm-your-reservation-modal/confirm-your-reservation-modal.component';
+import { Component, Input, Output, EventEmitter, inject } from '@angular/core';
+import { NgIf } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ConfirmYourReservationModalComponent } from '../confirm-your-reservation-modal/confirm-your-reservation-modal.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-hotel-reservation-modal',
-  imports: [
-    NgIf,
-    FormsModule,
-    ReactiveFormsModule,
-    ConfirmYourReservationModalComponent
-  ],
+  imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './hotel-reservation-modal.component.html',
-  styleUrl: './hotel-reservation-modal.component.css'
+  styleUrl: './hotel-reservation-modal.component.css',
 })
 export class HotelReservationModalComponent {
-  @Input() isOpen = false;
-  @Output() closeModal = new EventEmitter<void>();
-
-  showConfirmationModal = false;
+  dialog = inject(MatDialog);
+  dialogRef = inject(MatDialogRef<ConfirmYourReservationModalComponent>);
 
   onClose() {
-    this.closeModal.emit();
+    this.dialogRef.close();
   }
 
   onModalClick(event: Event) {
@@ -31,10 +23,14 @@ export class HotelReservationModalComponent {
   }
 
   onSubmit() {
-    this.showConfirmationModal = true;
+    this.dialog.open(ConfirmYourReservationModalComponent, {
+      width: '700px',
+      maxWidth: '90vw',
+      maxHeight: '98vh',
+    });
   }
 
   onConfirmationClose() {
-    this.showConfirmationModal = false;
+    this.dialogRef.close();
   }
 }

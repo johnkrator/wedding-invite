@@ -1,62 +1,72 @@
 @import "tailwindcss";
-
 @font-face {
-  font-family: 'InstrumentSans-Italic-VariableFont_wdth,wght';
+  font-family: "InstrumentSans-Italic-VariableFont_wdth,wght";
   src: url("assets/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf");
 }
 
 @font-face {
-  font-family: 'InstrumentSans-VariableFont_wdth,wght';
+  font-family: "InstrumentSans-VariableFont_wdth,wght";
   src: url("assets/fonts/InstrumentSans-VariableFont_wdth,wght.ttf");
 }
 
 @font-face {
-  font-family: 'PinyonScript-Regular';
+  font-family: "PinyonScript-Regular";
   src: url("assets/fonts/PinyonScript-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'PlayfairDisplay-Italic-VariableFont_wght';
+  font-family: "PlayfairDisplay-Italic-VariableFont_wght";
   src: url("assets/fonts/PlayfairDisplay-Italic-VariableFont_wght.ttf");
 }
 
 @font-face {
-  font-family: 'PlayfairDisplay-VariableFont_wght';
+  font-family: "PlayfairDisplay-VariableFont_wght";
   src: url("assets/fonts/PlayfairDisplay-VariableFont_wght.ttf");
 }
 
 p {
-  font-family: 'PlayfairDisplay-Italic-VariableFont_wght', sans-serif;
+  font-family: "PlayfairDisplay-Italic-VariableFont_wght", sans-serif;
 }
 
 h4 {
-  font-family: 'PinyonScript-Regular', sans-serif;
+  font-family: "PinyonScript-Regular", sans-serif;
 }
 
 h5 {
-  font-family: 'PlayfairDisplay-VariableFont_wght', sans-serif;
+  font-family: "PlayfairDisplay-VariableFont_wght", sans-serif;
 }
 
-body, html {
+body,
+html {
   background-image: url("assets/Frame 1686561926.svg");
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: auto;
-  font-family: 'InstrumentSans-VariableFont_wdth,wght', sans-serif;
+  font-family: "InstrumentSans-VariableFont_wdth,wght", sans-serif;
 }
 
 /* Tablet (max-width: 1024px) */
 @media screen and (max-width: 1024px) {
-  body, html {
+  body,
+  html {
     background-image: url("assets/Mobile.svg");
   }
 }
 
 /* Mobile (max-width: 767px) */
 @media screen and (max-width: 767px) {
-  body, html {
+  body,
+  html {
     background-image: url("assets/Mobile.svg");
   }
 }
 
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

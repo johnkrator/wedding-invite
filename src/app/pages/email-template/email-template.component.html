@@ -1,25 +1,30 @@
 <div class="flex flex-col gap-5 items-center justify-center lg:px-0 px-5">
-  <img [routerLink]="'/'" class="lg:-ml-[39rem] cursor-pointer -ml-[15rem] w-[92px] h-[102px]"
-       src="assets/Vector%20(1).svg" alt="">
+  <img
+    [routerLink]="'/'"
+    class="lg:-ml-[39rem] cursor-pointer -ml-[15rem] w-[92px] h-[102px]"
+    src="assets/Vector%20(1).svg"
+    alt=""
+  />
   <h5 class="lg:w-[712px] lg:text-[32px] text-center leading-[48px] font-bold">
     You're officially RSVP’d
   </h5>
 
-  <div class="mx-auto border-t-2 border-double lg:w-[679px] w-[327px] border-[#D1D1D1]"></div>
+  <div
+    class="mx-auto border-t-2 border-double lg:w-[679px] w-[327px] border-[#D1D1D1]"
+  ></div>
 
   <div class="flex flex-col gap-5 lg:w-[715px]">
-    <h5>
-      We can’t wait to celebrate with you!
-    </h5>
+    <h5>We can’t wait to celebrate with you!</h5>
 
     <div class="flex flex-col gap-5">
       <h5 class="text-[14px]">
-        Dear (Guest name), <br><br>
-        Thank you for your RSVP! We are excited to have you join us as we embark on this beautiful journey
-        together. Your presence means the world to us, and we cannot wait to celebrate this special day with you!
+        Dear (Guest name), <br /><br />
+        Thank you for your RSVP! We are excited to have you join us as we embark
+        on this beautiful journey together. Your presence means the world to us,
+        and we cannot wait to celebrate this special day with you!
       </h5>
 
-      <h5 class="text-[14px]"> Here are the details for our big day:</h5>
+      <h5 class="text-[14px]">Here are the details for our big day:</h5>
 
       <div>
         <h5 class="flex gap-3 text-[14px] whitespace-nowrap">
@@ -34,35 +39,40 @@
       </div>
 
       <h5 class="text-[14px]">
-        Reception follows right after at <b>Dr. Nnaemeka Victor Igwe-Omoke’s compound,</b> at <b>Ogoachi Obuegu Okposi
-        Okwu
-        by 2pm</b>
+        Reception follows right after at
+        <b>Dr. Nnaemeka Victor Igwe-Omoke’s compound,</b> at
+        <b>Ogoachi Obuegu Okposi Okwu by 2pm</b>
       </h5>
     </div>
 
-    <div class="mx-auto border-t-2 border-double lg:w-[679px] w-[327px] border-[#D1D1D1]"></div>
+    <div
+      class="mx-auto border-t-2 border-double lg:w-[679px] w-[327px] border-[#D1D1D1]"
+    ></div>
 
     <div class="flex flex-col gap-5">
       <h5 class="text-[#927C01] text-[16px] font-bold">What to Expect</h5>
 
-      <div class='lg:mb-0 mb-10'>
+      <div class="lg:mb-0 mb-10">
         <h5 class="text-[14px]">
-          Our wedding will be filled with love, laughter, and unforgettable moments. Expect delicious food, drinks and 
-          music that will have you dancing, and, most importantly, the day will be filled with the warmth of the people we love, including YOU!
+          Our wedding will be filled with love, laughter, and unforgettable
+          moments. Expect delicious food, drinks and music that will have you
+          dancing, and, most importantly, the day will be filled with the warmth
+          of the people we love, including YOU!
         </h5>
         <h5 class="text-[14px]">
-          We are grateful to have you join us on this special day. See you soon!! <br><br>
-          With love, <br> <b>Berry & Nnaemeka</b>
+          We are grateful to have you join us on this special day. See you
+          soon!! <br /><br />
+          With love, <br />
+          <b>Berry & Nnaemeka</b>
         </h5>
       </div>
     </div>
   </div>
 
-  <button (click)="openModal()" class="flex items-center justify-center mx-auto">
+  <button
+    (click)="openModal()"
+    class="flex items-center justify-center mx-auto"
+  >
     Open modal
   </button>
-
-  <app-hotel-reservation-modal [isOpen]="isModalOpen" (closeModal)="closeModal()"/>
 </div>
-
-

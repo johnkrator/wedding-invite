@@ -1,39 +1,23 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
-import {HotelReservationModalComponent} from '../hotel-reservation-modal/hotel-reservation-modal.component';
+import { Component, inject } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-thank-you-for-the-rsvp-modal',
   standalone: true,
-  imports: [
-    FormsModule,
-    NgIf,
-    HotelReservationModalComponent
-  ],
   templateUrl: './thank-you-for-the-rsvp-modal.component.html',
-  styleUrl: './thank-you-for-the-rsvp-modal.component.css'
+  styleUrl: './thank-you-for-the-rsvp-modal.component.css',
 })
 export class ThankYouForTheRsvpModalComponent {
   hotelReservation: string = '';
-  @Input() isOpen = false;
-  @Output() closeModal = new EventEmitter<void>();
-
-  isHotelModalOpen: boolean = false;
+  dialogRef = inject(MatDialogRef<ThankYouForTheRsvpModalComponent>);
 
   onHotelReservationChange(value: string) {
     this.hotelReservation = value;
     if (value === 'yes') {
-      this.isHotelModalOpen = true;
+      this.dialogRef.close(true);
+    } else {
+      this.dialogRef.close(false);
     }
-  }
-
-  onCloseHotelModal() {
-    this.isHotelModalOpen = false;
-  }
-
-  onClose() {
-    this.closeModal.emit();
   }
 
   onModalClick(event: Event) {

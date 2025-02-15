@@ -1,29 +1,21 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {FormsModule} from '@angular/forms';
-import {NgIf} from '@angular/common';
-import {
-  YouHaveAReservationModalComponent
-} from '../../you-have-a-reservation-modal/you-have-a-reservation-modal.component';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { YouHaveAReservationModalComponent } from '../../you-have-a-reservation-modal/you-have-a-reservation-modal.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-confirm-your-reservation-modal',
-  imports: [
-    FormsModule,
-    NgIf,
-    YouHaveAReservationModalComponent,
-    YouHaveAReservationModalComponent
-  ],
+  imports: [FormsModule],
   templateUrl: './confirm-your-reservation-modal.component.html',
-  styleUrl: './confirm-your-reservation-modal.component.css'
+  styleUrl: './confirm-your-reservation-modal.component.css',
 })
 export class ConfirmYourReservationModalComponent {
-  @Input() isOpen = false;
-  @Output() closeModal = new EventEmitter<void>();
-
-  showReservationSuccessModal = false;
+  dialog = inject(MatDialog);
+  dialogConfirmRef = inject(MatDialogRef<ConfirmYourReservationModalComponent>);
+  dialogYHRRef = inject(MatDialogRef<YouHaveAReservationModalComponent>);
 
   onClose() {
-    this.closeModal.emit();
+    this.dialogConfirmRef.close();
   }
 
   onModalClick(event: Event) {
@@ -31,12 +23,18 @@ export class ConfirmYourReservationModalComponent {
   }
 
   onPaymentConfirm() {
-    this.showReservationSuccessModal = true;
-    this.isOpen = false; // Close the confirmation modal
+    this.dialogConfirmRef.close();
+    this.dialog.open(YouHaveAReservationModalComponent, {
+      width: '700px',
+      maxWidth: '90vw',
+      maxHeight: '98vh',
+      closeOnNavigation: true,
+      disableClose: false,
+    });
   }
 
   onReservationSuccessClose() {
-    this.showReservationSuccessModal = false;
-    this.closeModal.emit(); // Close all modals
+    this.dialogYHRRef.close();
+    this.dialog.closeAll();
   }
 }
