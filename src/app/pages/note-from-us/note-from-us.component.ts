@@ -17,6 +17,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ConfirmYourReservationModalComponent } from '../../components/modals/confirm-your-reservation-modal/confirm-your-reservation-modal.component';
 import { MatDialog } from '@angular/material/dialog';
 import { HotelReservationModalComponent } from '../../components/modals/hotel-reservation-modal/hotel-reservation-modal.component';
+import { LocalStorageService } from '../../services/storage/local-storage/local-storage.service';
 
 @Component({
   selector: 'app-note-from-us',
@@ -32,6 +33,7 @@ export class NoteFromUsComponent {
   toast = inject(ToastrService);
   router = inject(Router);
   dialog = inject(MatDialog);
+  storage = inject(LocalStorageService);
 
   form: FormGroup = new FormGroup({
     firstName: new FormControl('', [
@@ -46,7 +48,6 @@ export class NoteFromUsComponent {
     ]),
     email: new FormControl('', [Validators.required, Validators.email]),
     phone: new FormControl('', [Validators.pattern('^[0-9]*$')]),
-    password: new FormControl('', Validators.required),
     willAttend: new FormControl(true, Validators.required),
     comingWithAGuest: new FormControl(false, Validators.required),
     numberOfGuests: new FormControl(0, Validators.required),
@@ -70,14 +71,14 @@ export class NoteFromUsComponent {
       numberOfGuests: guestNames.length,
       guestNames,
     };
-    console.log(model);
     this.rsvpService
       .submitPersonalInformation(model)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (response) => {
-          console.log(response);
+          this.isSubmitting.set(false);
           if (response.success && response.statusCode == HttpStatusCode.Ok) {
+            this.storage.setItem('userId', response.userId);
             this.toast.success(
               response.message ?? 'We have received your details.'
             );

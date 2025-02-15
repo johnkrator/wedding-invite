@@ -1,49 +1,23 @@
 <div class="flex flex-col gap-5 justify-between items-center p-4">
   <div class="flex items-center justify-center lg:gap-0 gap-16">
     <h5 class="lg:text-[24px] font-bold lg:w-[568px]">
-      We have these hotels available
+      Select a hotel from the list.
     </h5>
   </div>
 
-  <form class="flex flex-col gap-4" (ngSubmit)="onSubmit()">
+  <form class="flex flex-col gap-4" [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="flex flex-col gap-2">
-      <label class="text-[14px] font-bold">Osborne La Palm</label>
-      <input
-        type="text"
-        placeholder="25,000 NGN per night"
-        class="border border-[#F0EEEC] focus:border-[#594B00] lg:w-[568px] outline-none px-5 py-3 rounded-2xl"
-      />
-    </div>
-
-    <div class="flex flex-col gap-2">
-      <label class="text-[14px] font-bold"
-        >Osborne La Palm, Uburu (Old site)</label
+      <label class="text-[14px] font-bold">Select hotel</label>
+      <select
+        formControlName="hotelNumber"
+        (change)="calculateAmount()"
+        class="w-full border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
       >
-      <input
-        type="text"
-        placeholder="25,000 NGN per night"
-        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
-      />
-    </div>
+        @for(hotel of hotels; track hotel.key){
 
-    <div class="flex flex-col gap-2">
-      <label class="text-[14px] font-bold"
-        >Osborne La Palm, Uburu (New site)</label
-      >
-      <input
-        type="text"
-        placeholder="25,000 NGN per night"
-        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
-      />
-    </div>
-
-    <div class="flex flex-col gap-2">
-      <label class="text-[14px] font-bold">AZ hotel, Okpsi</label>
-      <input
-        type="password"
-        placeholder="25,000 NGN per night"
-        class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
-      />
+        <option [value]="hotel.key">{{ hotel.name }}</option>
+        }
+      </select>
     </div>
 
     <div class="flex flex-col gap-2">
@@ -51,21 +25,46 @@
         >Select the number of days you wish to stay</label
       >
       <select
-        name=""
-        id=""
+        type="number"
+        formControlName="numberOfDays"
+        (change)="calculateAmount()"
+        class="w-full border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+      >
+        <option selected [value]="1">1 day</option>
+        <option [value]="2">2 Days</option>
+        <option [value]="3">3 Days</option>
+        <option [value]="4">4 Days</option>
+        <option [value]="5">5 Days</option>
+        <option [value]="6">6 Days</option>
+        <option [value]="7">7 Days</option>
+        <option [value]="8">8 Days</option>
+        <option [value]="9">9 Days</option>
+        <option [value]="10">10 Days</option>
+      </select>
+    </div>
+
+    <div class="flex flex-col gap-2">
+      <label class="text-[14px] font-bold">Amount to pay</label>
+      <div
+        class="flex items-center gap-2"
         class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
       >
-        <option value="">Select below</option>
-        <option value="">1</option>
-      </select>
+        {{ form.value.amount | currency : "NGN" : "symbol-narrow" }}
+      </div>
     </div>
 
     <div class="flex lg:justify-end">
       <button
         type="submit"
-        class="px-5 py-3 bg-[#594B00] cursor-pointer lg:w-[224px] w-full rounded-2xl text-white shadow font-bold"
+        [disabled]="form.invalid || isSubmitting()"
+        [class]="
+          isSubmitting() || form.invalid
+            ? 'cursor-not-allowed bg-[#594c00a7] '
+            : 'cursor-pointer  bg-[#594B00]'
+        "
+        class="px-5 py-3 cursor-pointer w-full rounded-2xl text-white shadow font-bold"
       >
-        Continue
+        @if(isSubmitting()){ Submitting... }@else{ Continue }
       </button>
     </div>
   </form>
@@ -73,8 +72,3 @@
 <div class="p-4">
   <ng-content></ng-content>
 </div>
-<!-- 
-<app-confirm-your-reservation-modal
-  [isOpen]="showConfirmationModal"
-  (closeModal)="onConfirmationClose()"
-></app-confirm-your-reservation-modal> -->
