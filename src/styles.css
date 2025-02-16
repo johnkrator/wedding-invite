@@ -1,4 +1,5 @@
 @import "tailwindcss";
+
 @font-face {
   font-family: "InstrumentSans-Italic-VariableFont_wdth,wght";
   src: url("assets/fonts/InstrumentSans-Italic-VariableFont_wdth,wght.ttf");
@@ -42,7 +43,8 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: auto;
+  min-height: auto;
+  background-attachment: fixed;
   font-family: "InstrumentSans-VariableFont_wdth,wght", sans-serif;
 }
 
@@ -66,6 +68,7 @@ html,
 body {
   height: 100%;
 }
+
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;

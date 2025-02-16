@@ -7,18 +7,18 @@
       alt=""
     />
     <h5
-      class="lg:text-[36px] text-[24px] text-red-500 font-bold text-center whitespace-nowrap"
+      class="lg:text-[36px] text-[24px] text-[#474747] font-bold text-center whitespace-nowrap"
     >
       🌿 A Love Note from Us 🌿
     </h5>
   </div>
 
   <h5 class="lg:w-[953px] text-[14px]">
-    To Our Dearest Friends and Family, <br /><br />
+    To Our Dearest Friends and Family, <br/><br/>
     From the moment our paths crossed, we knew our love story was meant to be
     written together. Through laughter, adventures, quiet moments, and endless
     dreams, we have found in each other a love that feels like home.
-    <br /><br />
+    <br/><br/>
     With hearts overflowing, we invite you to join us as we say “I do” to
     forever. Your presence will make our day even more magical, and we cannot
     wait to create beautiful memories together. As we step into this new chapter
@@ -26,9 +26,9 @@
     surround us. Each of you has played a special part in our journey—guiding
     us, cheering us on, and sharing in our joy. Our wedding is not just about
     us; it is a celebration of love, resilience, family, and friendship, and we
-    cannot imagine this day without you. <br /><br />
+    cannot imagine this day without you. <br/><br/>
 
-    With love ❤️, <br />
+    With love ❤️, <br/>
     <b>Berry & Nnaemeka</b>
   </h5>
 
@@ -51,10 +51,16 @@
           *ngIf="ctrls['firstName'].errors && ctrls['firstName'].touched"
           class="text-error"
         >
-          @if(ctrls['firstName'].errors['required']){ First name is required. }
-          @if(ctrls['firstName'].errors['minlength']){ First name cannot be less
-          than 2 characters. } @if(ctrls['firstName'].errors['maxlength']){
-          First name cannot be more than 50 characters. }
+          @if (ctrls['firstName'].errors?.['required']) {
+            First name is required.
+          }
+          @if (ctrls['firstName'].errors?.['minlength']) {
+            First name cannot be less
+              than 2 characters.
+          }
+          @if (ctrls['firstName'].errors?.['maxlength']) {
+            First name cannot be more than 50 characters.
+          }
         </p>
       </div>
 
@@ -71,10 +77,17 @@
           *ngIf="ctrls['lastName'].errors && ctrls['lastName'].touched"
           class="text-error"
         >
-          @if(ctrls['lastName'].errors['required']){ Last name is required. }
-          @if(ctrls['lastName'].errors['minlength']){ Last name cannot be less
-          than 2 characters. } @if(ctrls['lastName'].errors['maxlength']){ Last
-          name cannot be more than 50 characters. }
+          @if (ctrls['lastName'].errors?.['required']) {
+            Last name is required.
+          }
+          @if (ctrls['lastName'].errors?.['minlength']) {
+            Last name cannot be less
+              than 2 characters.
+          }
+          @if (ctrls['lastName'].errors?.['maxlength']) {
+            Last
+              name cannot be more than 50 characters.
+          }
         </p>
       </div>
 
@@ -90,7 +103,9 @@
           *ngIf="ctrls['phone'].errors && ctrls['phone'].touched"
           class="text-error"
         >
-          @if(ctrls['phone'].errors['pattern']){ Invalid phone number. }
+          @if (ctrls['phone'].errors?.['pattern']) {
+            Invalid phone number.
+          }
         </p>
       </div>
       <div class="flex flex-col gap-2">
@@ -106,8 +121,12 @@
           *ngIf="ctrls['email'].errors && ctrls['email'].touched"
           class="text-error"
         >
-          @if(ctrls['email'].errors['required']){ Email is required. }
-          @if(ctrls['email'].errors['email']){ Invalid email address. }
+          @if (ctrls['email'].errors?.['required']) {
+            Email is required.
+          }
+          @if (ctrls['email'].errors?.['email']) {
+            Invalid email address.
+          }
         </p>
       </div>
 
@@ -167,16 +186,16 @@
         </div>
       </div>
 
-      @if(form.value.comingWithAGuest == true){
-      <div class="flex flex-col gap-2">
-        <label class="text-[14px] font-bold">Guest’s full name</label>
-        <input
-          type="text"
-          placeholder="e.g. John Doe, Jane Doe - Comma separated."
-          formControlName="guestNames"
-          class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
-        />
-      </div>
+      @if (form.value.comingWithAGuest == true) {
+        <div class="flex flex-col gap-2">
+          <label class="text-[14px] font-bold">Guest’s full name</label>
+          <input
+            type="text"
+            placeholder="e.g. John Doe, Jane Doe - Comma separated."
+            formControlName="guestNames"
+            class="border border-[#F0EEEC] focus:border-[#594B00] outline-none px-5 py-3 rounded-2xl"
+          />
+        </div>
       }
 
       <div class="flex lg:justify-end">
@@ -190,7 +209,11 @@
           "
           class="px-5 py-3 lg:w-[224px] w-full rounded-2xl text-white shadow font-bold"
         >
-          @if(isSubmitting()){ Submitting... }@else{ Submit }
+          @if (isSubmitting()) {
+            Submitting...
+          } @else {
+            Submit
+          }
         </button>
       </div>
     </form>
