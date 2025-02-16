@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'http://rsvp.runasp.net/api',
+  apiUrl: 'https://rsvp.runasp.net/api',
 };
